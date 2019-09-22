@@ -1,0 +1,10 @@
+SELECT author_id as id
+FROM VIEWS
+WHERE author_id = viewer_id
+GROUP by author_id
+ORDER by author_id ASC
+
+SELECT DISTINCT author_id as id
+FROM Views
+WHERE author_id = viewer_id
+ORDER BY id ASC

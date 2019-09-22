@@ -1,0 +1,20 @@
+SELECT DISTINCT viewer_id as id
+FROM Views
+GROUP BY viewer_id,view_date
+HAVING COUNT(DISTINCT article_id)>1
+ORDER BY viewer_id;
+
+
+select distinct viewer_id as id
+from
+(select viewer_id, view_date
+from views
+group by viewer_id, view_date
+having count(distinct article_id)>1) temp
+order by viewer_i
+
+select distinct viewer_id as id
+from Views
+group by view_date, viewer_id
+having count(distinct article_id) > 1
+order by 1;
