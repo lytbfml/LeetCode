@@ -1,7 +1,8 @@
 package algorithms.math;
 
 /**
- * @author Yangxiao Wang on 9/21/2019
+ * https://leetcode.com/problems/ugly-number-iii/
+ * https://www.youtube.com/watch?v=gj4JevBj8-Y
  */
 public class Ugly_Number_III {
 	
@@ -17,24 +18,21 @@ public class Ugly_Number_III {
 	
 	public int nthUglyNumber(int n, int a, int b, int c) {
 		int low = 1, high = Integer.MAX_VALUE;
+		long ab = lcm(a, b);
+		long ac = lcm(a, c);
+		long bc = lcm(b, c);
+		long abc = lcm(a, bc);
+		
 		while (low < high) {
 			int mid = low + (high - low) / 2;
-			int num = count(a, b, c, mid);
+			int num = (int) (mid / a + mid / b + mid / c - mid / ab - mid / ac - mid / bc + mid / abc);
 			if (num < n) {
 				low = mid + 1;
 			} else {
 				high = mid;
 			}
 		}
-		return high;
-	}
-	
-	private int count(long a, long b, long c, long num) {
-		return (int) ((num / a) + (num / b) + (num / c)
-				- (num / lcm(a, b))
-				- (num / lcm(b, c))
-				- (num / lcm(a, c))
-				+ (num / lcm(a, lcm(b, c))));
+		return low;
 	}
 	
 	// must return long
