@@ -54,7 +54,7 @@ public class Minimum_Knight_Moves {
 		if (y > delta) {
 			return (int) (delta - 2 * Math.floor((float) (delta - y) / 3));
 		} else {
-			return (int) (delta - 2 * Math.floor((delta - y) / 4));
+			return (int) (delta - 2 * Math.floor((float) (delta - y) / 4));
 		}
 	}
 }
