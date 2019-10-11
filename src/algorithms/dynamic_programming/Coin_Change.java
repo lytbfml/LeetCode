@@ -45,7 +45,6 @@ public class Coin_Change {
 	public int coinChange_2(int[] coins, int amount) {
 		int n = coins.length;
 		int[] dp = new int[amount + 1];
-		
 		for (int i = 1; i <= amount; i++) {
 			int num = -1;
 			for (int j = 0; j < n; j++) {

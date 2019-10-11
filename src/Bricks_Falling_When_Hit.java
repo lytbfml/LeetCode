@@ -135,6 +135,7 @@ public class Bricks_Falling_When_Hit {
 		}
 	}
 	
+	// https://leetcode.com/problems/bricks-falling-when-hit/discuss/137465/Java-Union-Find-beats-100
 	class Solution_UnionFind {
 		public int[] hitBricks(int[][] grid, int[][] hits) {
 			// Think of it reversely: from end to start each hit will add one block to the grid,
