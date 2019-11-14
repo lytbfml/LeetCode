@@ -1,5 +1,6 @@
 package algorithms.searching;
 
+
 import java.util.*;
 
 /**
@@ -107,6 +108,51 @@ public class Critical_Connections_in_a_Network {
 				}
 			}
 			return result;
+		}
+	}
+	
+	class ss {
+		public List<List<Integer>> criticalConnections(int n, List<List<Integer>> connections) {
+			int[] disc = new int[n], low = new int[n];
+			Map<Integer, Set<Integer>> graph = new HashMap<>();
+			Arrays.fill(disc, -1);
+			List<List<Integer>> res = new ArrayList<>(n);
+			for (int i = 0; i < n; i++) {
+				graph.put(i, new HashSet<>());
+			}
+			for (int i = 0; i < connections.size(); i++) {
+				int from = connections.get(i).get(0), to = connections.get(i).get(1);
+				graph.get(from).add(to);
+				graph.get(to).add(from);
+			}
+			
+			for (int i = 0; i < n; i++) {
+				if (disc[i] == -1) {
+					dfs(i, low, disc, graph, res, 0);
+				}
+			}
+			return res;
+		}
+		
+		int time = 0;
+		
+		private void dfs(int u, int[] low, int[] disc, Map<Integer, Set<Integer>> graph, List<List<Integer>> res,
+		                 int pre) {
+			disc[u] = low[u] = ++time;
+			for (int v : graph.get(u)) {
+				if (v == pre) {
+					continue;
+				}
+				if (disc[v] == -1) {
+					dfs(v, low, disc, graph, res, u);
+					low[u] = Math.min(low[u], low[v]);
+					if (low[v] > disc[u]) {
+						res.add(Arrays.asList(u, v));
+					}
+				} else {
+					low[u] = Math.min(low[u], disc[v]);
+				}
+			}
 		}
 	}
 }
